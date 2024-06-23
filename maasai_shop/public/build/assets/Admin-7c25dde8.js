@@ -1,0 +1,1 @@
+import{j as t,Y as s}from"./app-370495a4.js";import{L as n}from"./Layout-ac081670.js";function m({title:r,auth:i}){return t.jsxs(n,{auth:i,children:[t.jsx(s,{title:"Admin"}),t.jsx("h1",{children:r})]})}export{m as default};
