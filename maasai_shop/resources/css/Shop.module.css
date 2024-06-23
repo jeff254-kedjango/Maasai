@@ -1,0 +1,72 @@
+.ShopContainer {
+    background-color: #FFFAE5;
+    min-height: 100vh;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    position: relative;
+}
+
+.ShopAdvertSection {
+    height: 85vh;
+    width: 100%;
+    display: flex;
+    padding: 30px;
+    gap: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.ShopAdvertVidContainer {
+    width: 75%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+.ShopAdvertPicsContainer {
+    width: 25%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.ShopAdvertCubeContainer {
+    height: 70%;
+    width: 100%;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, #007f5f 0px 0px 0px 1px inset;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+
+}
+
+.ShopAdvertCubeContainer h5 {
+    font-family: "Righteous", sans-serif;
+    font-size: 100;
+    color: darkslategray;
+}
+
+.ShopAdvertBannerContainer {
+    height: 30%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.ShopAdvertBannerContainer h5 {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    letter-spacing: 0.5px;
+    font-family: "Righteous", sans-serif;
+    font-size: 100;
+    color: darkslategray;
+}

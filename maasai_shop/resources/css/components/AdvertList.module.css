@@ -1,0 +1,334 @@
+.ProductListSection {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    position: relative; 
+    background-color:transparent;
+    transition: 1s;
+    border-radius: 10px;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+}
+
+
+.ProductListContainer {
+    height: 15vh;
+    width: 100%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Add a subtle border */
+    display: flex;
+}
+
+.ProductListTitle {
+    height: 100%;
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: 400;
+    font-family: "Righteous", sans-serif;
+    padding: 0px 15px;
+    color: darkslategray;
+}
+
+.AddProductButton {
+    height: 50px;
+    width: auto;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: transparent;
+    color: darkslategray;
+    font-weight: 400;
+    font-size: small;
+    font-family: "Raleway", sans-serif;
+    transition: 0.4s;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    opacity: 0.7;
+}
+
+
+.AddProductButton:hover {
+    background-color: rgb(78, 124, 124);
+    color: #FFFAE5;
+    transition: 0.7s;
+    opacity: 1;
+}
+
+
+.ProductListIcon {
+    height: 100%;
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.7;
+}
+
+.ProductListIconIcon:hover {
+    cursor: pointer;
+}
+
+.ProductListDisplaySection {
+    max-height: 150vh;
+    width: 100%;
+    padding: 5px;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.ProductListDisplayContainer {
+    max-height: 130vh;
+    width: 100%;
+    padding: 5px;
+    background-color: transparent;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    grid-gap: 10px;
+    overflow: hidden;
+    overflow-y: auto;
+    position: relative;
+}
+
+.ProductListDisplayCard {
+  background-color: transparent;
+  height: 60vh;
+  border-radius: 10px;
+  text-align: center;
+  position: relative;
+  transition: 0.2s;
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+  display: flex;
+  flex-direction: column;
+}
+
+.ProductListDisplayCard:hover {
+    transition: 0.2s;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+
+.AdvertDisplayCard {
+    height: 85%;
+    width: 100%;
+}
+
+.AdvertDetails {
+    height: 15%;
+    width: 100%;
+    display: flex;
+}
+
+.AdvertDetailsTitle {
+    height: 100%;
+    width: 80%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 5px;
+}
+
+.AdvertVideoDisplayContainer {
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+.AdvertVideoDisplayContainer video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;    
+}
+
+.AdvertImageDisplayContainer {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: darkslategray;
+}
+
+.AdvertImageDisplay {
+    height:100%;
+    width: auto;
+    position: relative;
+    background-color: darkslategray;
+    object-fit: contain;
+    padding: 2px;
+}
+
+.AdvertDetailsIcons {
+    height: 100%;
+    width: 20%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 5px;
+    padding: 5px;
+}
+
+.ProductListDisplayImage {
+    height: 65%;
+    width: 100%;
+    position: relative;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    cursor: pointer;
+}
+
+.ProductListDisplayImage img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.ProductListDisplayTitle {
+    height: 15%;
+    width: 100%;
+    font-size: small;
+    text-align: left;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 10px;
+}
+
+.ProductListDisplayDetails {
+    height: 20%;
+    width: 100%;
+    display: flex;
+    padding: 5px;
+    gap: 5px;
+}
+
+.ProductListDisplayPrice {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: small;
+}
+
+.ProductListDisplayPriceSP {
+    text-decoration: line-through;
+    color: darkslategrey;
+}
+
+.ProductListDisplayPriceP {
+    color: rgb(255, 125, 125);
+}
+
+.ProductListDisplayEdit {
+    height: 100%;
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: small;
+    cursor: pointer;
+    padding: 5px;
+    margin-right: 5px;
+}
+
+.ProductListDisplayEdit:hover {
+    color: #c09300;
+}
+
+.ProductListDisplayDelete {
+    height: 100%;
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: small;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.ProductListDisplayDelete:hover {
+    color: #a70b0b;
+}
+
+.ProductListDisplayIcons {
+    font-size: larger;
+    opacity: 0.5;
+}
+
+
+.ProductListDisplayPagination {
+    height: 20vh;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 15px;
+}
+
+.NoProductListDisplayCard {
+    height: 60vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.PaginationContainer {
+    display: flex;
+    width: auto;
+    height: 100%;
+    padding: 5px;
+    gap: 5px;
+}
+
+.PaginationContainer button {
+    height: 100%;
+    width: 150px;
+    background-color: forestgreen;
+    color: #FFFAE5;
+    border-radius: 10px;
+}
+
+.PaginationContainer button:hover{
+    background-color: rgb(38, 156, 38);
+}
+
+.PaginationContainer input {
+    width: 100px;
+    border-radius: 10px;
+}
+
+.PaginationContainer input:focus {
+    border: 1px solid forestgreen;
+}
+
+
+/* Add media queries for responsiveness (optional): */
+
+@media (max-width: 768px) {
+    .ProductListDisplayContainer {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+    .ProductListDisplayContainer {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  }
+}

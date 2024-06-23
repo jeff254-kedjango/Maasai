@@ -1,0 +1,180 @@
+.CategoryListSection {
+    min-height: 90vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 5px;
+    position: relative; 
+    background-color:transparent;
+    transition: 1s;
+    padding: 20px 10px;
+    border-radius: 10px;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+}
+
+.CategoryListContainer {
+    height: 15vh;
+    width: 100%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Add a subtle border */
+    display: flex;
+}
+
+.CategoryListTitle {
+    height: 100%;
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: 400;
+    font-family: "Righteous", sans-serif;
+    padding: 0px 15px;
+    color: darkslategray;
+}
+
+.AddProductButton {
+    height: 50px;
+    width: auto;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: transparent;
+    color: darkslategray;
+    font-weight: 400;
+    font-size: small;
+    font-family: "Raleway", sans-serif;
+    transition: 0.4s;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    opacity: 0.7;
+}
+
+
+.AddProductButton:hover {
+    background-color: rgb(78, 124, 124);
+    color: #FFFAE5;
+    transition: 0.7s;
+    opacity: 1;
+}
+
+
+.CategoryListIcon {
+    height: 100%;
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.7;
+}
+
+.CategoryListIconIcon:hover {
+    cursor: pointer;
+}
+
+.CategoryListDisplaySection {
+    height: auto;
+    width: 100%;
+    padding: 5px;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.ProductListDisplayContainer {
+    height: auto;
+    width: 100%;
+    padding: 5px;
+    background-color: transparent;
+    overflow: hidden;
+    overflow-y: auto;
+    position: relative;
+    border-radius: 10px;
+}
+
+.CategoryListDisplayTableHead {
+    width: 100%;
+    height: auto;
+}
+
+.CategoryListDisplayTableHead1{
+    width: 75%;
+    height: 10vh;
+    padding: 0px 5px;
+}
+
+.CategoryListDisplayTableBody {
+    width: 100%;
+    max-height: 80vh;
+    padding: 10px;
+}
+
+
+.CategoryListDisplayTableRow {
+    height: 10vh;
+    width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    position: relative;
+    transition: 0.2s;
+    margin: 5px;
+}
+
+.CategoryEdit {
+    height: auto;
+    width: 150px;
+    background-color: rgb(139, 135, 34);
+    font-size: small;
+    padding: 15px 20px;
+    margin-right: 10px;
+    color: #FFFAE5;
+    font-weight: 500;
+    border-radius: 10px;
+    gap: 5px;
+}
+
+.CategoryEdit:hover {
+    background-color: rgb(160, 156, 41);    
+}
+
+.CategoryDelete {
+    height: auto;
+    width: 150px;
+    background-color: rgb(144, 12, 12);
+    font-size: small;
+    padding: 15px 20px;
+    margin-right: 10px;
+    color: #FFFAE5;
+    font-weight: 500;
+    border-radius: 10px;
+    gap: 5px;
+}
+
+.CategoryDelete:hover {
+    background-color: rgb(174, 21, 21);
+}
+
+.CategoryImg {
+    width: 25%;
+    height: auto;
+    margin-left: 10px;
+    font-weight: 500;
+    position: relative;
+    padding: 2px;
+}
+
+.CategoryImg img {
+    height: 10vh;
+    width: 100px;
+    object-fit: cover;
+}
+
+.CategoryName {
+    width: 40%;
+    height: auto;
+    margin-left: 10px;
+    font-weight: 500;
+}

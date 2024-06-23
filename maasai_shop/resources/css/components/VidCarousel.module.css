@@ -1,0 +1,120 @@
+
+.videoPlayerContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: #d6d6d6;
+    border-radius: 10px;
+    position: relative;
+    padding: 0.2px;
+    overflow: hidden;
+}
+
+.videoPlayer {
+    width: 100%;
+    height: 100%;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.controls {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    width: 150px;
+    height: 100%;
+    right: 0;
+    gap: 5px;
+    padding: 5px;
+    margin: 5px;
+}
+
+/* .controls:hover {
+    background-color: rgba(128, 128, 128, 0.3);
+} */
+
+.controls button {
+    padding: 10px;
+    border: none;
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    background-color: rgba(128, 128, 128, 0.3);
+    color: #FFFAE5;
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s;
+}
+
+.controls button:hover {
+    background-color: rgba(128, 128, 128, 0.7);
+    transition: 0.3s;
+}
+
+.AdvertVidDetails {
+    position: absolute;
+    height: 100%;
+    max-width: 60%;
+    border-radius: 5px;
+    margin: 5px;
+    padding: 5px;
+}
+
+.advertTitle {
+    font-size: large;
+    position: relative;
+    padding:20px;
+    /* font-family: "Righteous", sans-serif; */
+    font-size: medium;
+    color:rgba(21, 34, 50, 0.9);
+    letter-spacing: 1px;
+    background-color: rgba(255, 250, 229, 0.4);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
+}
+.advertContent {
+    max-height: 300px;
+    overflow-y: auto;
+    font-size: small;
+    width: 150px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
+}
+
+.loadingIndicator {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 50px;
+    font-weight: bold;
+    color: #007f5f;
+    opacity: 0.3;
+}
+
+
+.companyLogo {
+    position:absolute;
+    bottom: 0;
+    left: 0;
+    font-size: 50px;
+    opacity: 1;
+    height: 80px;
+    width: auto;
+    margin: 10px;
+}
+
+.companyLogo img{
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+}

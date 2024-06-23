@@ -1,0 +1,27 @@
+.ShopCategorySection {
+    height: 70vh;
+    width: 100%;
+    background-color: transparent;
+    padding: 60px 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ShopCategoryContainer {
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: 600;
+    gap: 20px;
+}
+
+.ShopCategoryContainer h2 {
+    font-family: "Righteous", sans-serif;
+    font-weight: 100; 
+    color: darkslategray;  
+}

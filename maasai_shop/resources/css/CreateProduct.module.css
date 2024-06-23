@@ -1,0 +1,135 @@
+/* Ensure all elements use border-box sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Main dashboard container */
+.createDashboard {
+  min-height: 90vh;
+  width: 100%;
+  background-color: #FFFAE5;
+  gap: 5px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 15px; /* Added padding to handle any overflow due to margins inside */
+}
+
+/* Form container */
+.productForm {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: #FFFAE5;
+  max-width: 100%; /* Ensure form does not exceed the width of its container */
+  margin: auto;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+}
+
+/* Form groups */
+.formGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.fullWidth {
+  flex: 0 0 100%;
+}
+
+.halfWidth {
+  flex: 0 0 48%;
+}
+
+/* Form inputs */
+.formInput {
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  background-color: #FFFAE5;
+  border-radius: 5px;
+}
+
+.formInput:focus {
+  border: 1px solid forestgreen;
+}
+
+.error {
+  color: red;
+  font-size: 0.875em;
+  margin-top: 5px;
+}
+
+.ProductEditImageDisplay {
+  height: 400px;
+  width: auto;
+  position: relative;
+  background-color: darkslategray;
+  object-fit: contain;
+  padding: 2px;
+}
+
+/* Submit button */
+.submitButton {
+  background-color: #2b9348;
+  color: #f5f6f5;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+  flex: 0 0 100%;
+  font-size: 1em;
+}
+
+.submitButton:hover {
+  background-color: #237a3c;
+}
+
+/* Flash message */
+.alertSuccess {
+  position: relative;
+  padding: 15px 20px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  background-color: #d4edda;
+  color: #155724;
+  border-color: #c3e6cb;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%; /* Ensure it does not exceed the container width */
+  max-width: 600px; /* Add a max-width to ensure it doesn't get too wide */
+  box-sizing: border-box; /* Include padding and border in element's total width */
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  color: #155724;
+  font-size: 1.2em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.closeButton:focus {
+  outline: none;
+}
+
+.closeButton:hover {
+  color: #0b2e13;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .halfWidth {
+    flex: 0 0 100%;
+  }
+}

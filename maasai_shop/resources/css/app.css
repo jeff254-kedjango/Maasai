@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Righteous&display=swap');
+@import "@fortawesome/fontawesome-free/css/all.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.righteous-regular {
+  font-family: "Righteous", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+  
+
+.raleway {
+  font-family: "Raleway", sans-serif;
+  font-optical-sizing: auto;
+  /* font-weight: <weight>; */
+  font-style: normal;
+}
+
+/* Target the scrollbar element (use ::-webkit-scrollbar for WebKit browsers) */
+::-webkit-scrollbar {
+  width: 5px; /* Adjust the width of the scrollbar */
+  height: 8px; /* Adjust the height of the scrollbar (optional for some browsers) */
+}
+
+/* Style the scrollbar track */
+::-webkit-scrollbar-track {
+  background: #FFFAE5; /* Set the background color for the track */
+}
+
+/* Style the scrollbar thumb */
+::-webkit-scrollbar-thumb {
+  background: #888; /* Set the background color for the thumb */
+  border-radius: 0px; /* Add a border radius to the thumb */
+}
+
+/* Style the thumb when hovering over the scrollbar */
+::-webkit-scrollbar-thumb:hover {
+  background: #666; /* Change the background color on hover */
+}
