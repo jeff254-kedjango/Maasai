@@ -31,11 +31,13 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-
         $request->authenticate();
-
+    
+        $user = Auth::user();
+        $user->update(['last_login_at' => now()]); // Update the last login timestamp
+    
         $request->session()->regenerate();
-
+    
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 

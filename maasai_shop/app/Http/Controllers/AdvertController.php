@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Auth;
 
 
 
@@ -14,48 +15,80 @@ class AdvertController extends Controller
 {
     public function index()
     {
+        $user = Auth::user();
         $adverts = Advert::all();
+        $authData = $user ? [
+            'user' => $user,
+            'roles' => $user->getRoleNames()->toArray(),
+        ] : null;
+
         return Inertia::render('Dashboard', [
             'adverts' => $adverts,
+            'auth' => $authData,
             'flash' => session('success')
         ]);
     }
 
     public function create()
     {
-        return Inertia::render('CreateAdvert');
+        $user = Auth::user();
+        $authData = $user ? [
+            'user' => $user,
+            'roles' => $user->getRoleNames()->toArray(),
+        ] : null;
+        return Inertia::render('CreateAdvert', [
+            'auth' => $authData,
+        ]);
     }
+
 
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'title' => 'required|string|max:255',
-            'content' => 'required|string',
-            'video' => 'nullable|file|mimes:mp4,mov,ogg,qt|max:20000',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp',
-            'start_date' => 'required|date',
-            'end_date' => 'required|date|after:start_date',
-        ]);
+        Log::info('Advert store method called.', $request->all());
 
-        // Log::info('Advert validated Data:', $validatedData);
+        try {
+            $validatedData = $request->validate([
+                'title' => 'required|string|max:255',
+                'content' => 'required|string',
+                'video' => 'nullable|file|mimes:mp4,mov,ogg,qt|max:30000',
+                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp',
+                'start_date' => 'required|date',
+                'end_date' => 'required|date|after:start_date',
+            ]);
 
-        if ($request->hasFile('image')) {
-            $validatedData['image'] = $request->file('image')->store('adverts', 'public');
+            Log::info('Advert validated Data:', $validatedData);
+
+            if ($request->hasFile('image')) {
+                $validatedData['image'] = $request->file('image')->store('adverts', 'public');
+                Log::info('Advert image stored at:', ['path' => $validatedData['image']]);
+            }
+
+            if ($request->hasFile('video')) {
+                $validatedData['video'] = $request->file('video')->store('adverts', 'public');
+                Log::info('Advert video stored at:', ['path' => $validatedData['video']]);
+            }
+
+            Advert::create($validatedData);
+            Log::info('Advert created successfully.', $validatedData);
+
+            return redirect()->route('dashboard')->with('success', 'Advert created successfully.');
+        } catch (ValidationException $e) {
+            Log::error('Validation error:', $e->errors());
+            return back()->withErrors($e->errors())->withInput();
         }
-
-        if ($request->hasFile('video')) {
-            $validatedData['video'] = $request->file('video')->store('adverts', 'public');
-        }
-
-        Advert::create($validatedData);
-
-        return redirect()->route('admin.adverts.index')->with('success', 'Advert created successfully.');
     }
 
     public function edit(Advert $advert)
     {
+        $user = Auth::user();
+        $authData = $user ? [
+            'user' => $user,
+            'roles' => $user->getRoleNames()->toArray(),
+        ] : null;
+
         return Inertia::render('UpdateAdvert', [
-            'advert' => $advert
+            'advert' => $advert,
+            'auth' => $authData,
         ]);
     }
 
@@ -100,7 +133,7 @@ class AdvertController extends Controller
         $updateSuccess = $advert->save();
 
         if ($updateSuccess) {
-            return redirect()->route('admin.adverts.index')->with('success', 'Advert updated successfully.');
+            return redirect()->route('dashboard')->with('success', 'Advert updated successfully.');
         } else {
             return redirect()->back()->with('error', 'Advert update failed.')->withInput();
         }
@@ -118,6 +151,6 @@ class AdvertController extends Controller
 
         $advert->delete();
 
-        return redirect()->route('admin.adverts.index')->with('success', 'Advert deleted successfully.');
+        return redirect()->route('dashboard')->with('success', 'Advert deleted successfully.');
     }
 }
