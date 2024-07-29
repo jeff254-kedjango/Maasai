@@ -1,0 +1,15 @@
+/* styles.module.css or your stylesheet */
+.chartContainer {
+    width: 100%; /* Ensure the container takes up the full width of its parent */
+    height: 50vh; /* Adjust height to maintain aspect ratio or set a fixed height */
+}
+
+.chartContainer h1 {
+    font-weight: 700;
+    font-size: medium;
+}
+
+.chartContainer canvas {
+    width: 100% !important; /* Make canvas width 100% of its container */
+    height: auto !important; /* Adjust height to maintain aspect ratio */
+}

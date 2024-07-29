@@ -1,0 +1,38 @@
+/* ChartComponent.module.css */
+
+.chartContainer {
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
+}
+
+.chartContainer h2 {
+    font-size: medium;
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+canvas {
+    width: 100%;
+    height: 400px;
+}
+
+.pieChartContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+    width: auto;
+}
+
+.pieChartContainer h2 {
+    font-size: medium;
+    font-weight: 600;
+    text-decoration: underline;
+}

@@ -16,7 +16,7 @@
 }
 
 .swiper-slide-image {
-  width: auto;
+  width: 10vw;
   height: 100%;
   position: relative;
 }
@@ -24,7 +24,7 @@
 .swiper-slide-image img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
 }
 
 .swiper-slide-details {
@@ -39,7 +39,8 @@
 .title-container {
     width: 40%;
     height: 100%;
-    font-weight: 600;
+    font-weight: 700;
+    letter-spacing: 0.5px;
     display: flex;
     justify-content: center;
     align-items: center;

@@ -9,13 +9,58 @@
     align-items: center;
 }
 
-
 .LoginForm {
     display: flex;
     flex-direction: column;
     width: 50%;
     height: auto;
     padding: 50px;
+    margin-top: 50px;
+    margin-bottom: 50px;
     border-radius: 10px;
     box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+}
+
+/* Adjusting input fields for focus effect and placeholder styling */
+.LoginForm input[type="text"],
+.LoginForm input[type="email"],
+.LoginForm input[type="tel"],
+.LoginForm input[type="password"] {
+    background-color: #FFFAE5;
+    color: darkslategrey;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.LoginForm input[type="text"]::placeholder,
+.LoginForm input[type="email"]::placeholder,
+.LoginForm input[type="tel"]::placeholder,
+.LoginForm input[type="password"]::placeholder {
+    color: darkslategrey;
+}
+
+.LoginForm input[type="text"]:focus,
+.LoginForm input[type="email"]:focus,
+.LoginForm input[type="tel"]:focus,
+.LoginForm input[type="password"]:focus {
+    border-color: #2b9348;
+    outline: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .LoginForm {
+        width: 80%;
+        padding: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .LoginForm {
+        width: 100%;
+        padding: 20px;
+    }
 }

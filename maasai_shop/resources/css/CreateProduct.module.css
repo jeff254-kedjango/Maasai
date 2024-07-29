@@ -60,31 +60,48 @@
   border: 1px solid forestgreen;
 }
 
-.error {
-  color: red;
+.ErrorText {
+  color: #f26954;
   font-size: 0.875em;
+  font-weight: 600;
   margin-top: 5px;
-}
-
-.ProductEditImageDisplay {
-  height: 400px;
-  width: auto;
-  position: relative;
-  background-color: darkslategray;
-  object-fit: contain;
-  padding: 2px;
 }
 
 /* Submit button */
 .submitButton {
-  background-color: #2b9348;
-  color: #f5f6f5;
-  border: none;
-  border-radius: 10px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 10vh;
   padding: 10px 20px;
+  background-color: #025b09;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
   cursor: pointer;
-  flex: 0 0 100%;
-  font-size: 1em;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.submitButton:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
+
+.loadingButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loaderContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 8vh;
 }
 
 .submitButton:hover {
@@ -125,6 +142,16 @@
 
 .closeButton:hover {
   color: #0b2e13;
+}
+
+.loaderContainer {
+  background-color: transparent;
+  position: absolute;
+  top: 50%;
+  left: 25%;
+  height: auto;
+  width: auto;
+  padding: 30px;
 }
 
 /* Responsive adjustments */

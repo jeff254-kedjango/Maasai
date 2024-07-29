@@ -4,9 +4,35 @@
     position: relative;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 20px;
     background-color: #FFFAE5;
 }
+
+.DashboardBanner {
+    width: 85vw;
+    height: 15vh;
+    background: #f26b57;
+    background: -webkit-linear-gradient(0deg, #f26b57 0%, #ff5858 100%);
+    background: linear-gradient(0deg, #f26b57 0%, #ff5858 100%);
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    border-radius: 10px;
+}
+
+
+.DashboardContainer {
+    color: #FFFAE5;
+    font-weight: 500;
+    font-size: 1.1rem;
+    padding: 30px;
+    width: 100%;
+    height: 100%;
+    letter-spacing: 0.75px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
 
 .AdminSection {
     min-height: 100vh;
@@ -31,6 +57,31 @@
     gap: 10px;
     position: relative;
 }
+
+.alertSuccess {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 1rem;
+    border-radius: 0.25rem;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    left: 50%;
+    width: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.alertError {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 1rem;
+    border-radius: 0.25rem;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
 
 .AdminCards {
     box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
@@ -96,11 +147,18 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    position: relative;
+    color: rgba(26, 4, 16,0.6);
+    transition: 0.4s ease;
+    font-weight: 600;
+    border-radius: 10px;
+    padding: 10px;
 }
 
 .SidebarCards:hover {
-    color: forestgreen;
-    transition: 0.4s;
+    color: #1a0410;
+    transition: 0.4s ease;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
 }
 
 .SidebarIcon {
@@ -110,4 +168,23 @@
 
 .SidebarTitle {
     font-size: small;
+}
+
+.NeworderNotification {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-radius: 50%;
+    background-color: #ff5858;
+    color: #FFFAE5;
+    font-weight: 500;
+    top: 0;
+    right: 0;
+    margin: 10px 10px;
+    font-size: large;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
 }

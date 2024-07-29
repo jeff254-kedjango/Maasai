@@ -1,0 +1,13 @@
+/* ProductTrends.module.css */
+
+.container {
+    padding: 20px;
+}
+
+.pagination {
+    margin-top: 20px;
+}
+
+button {
+    margin: 0 10px;
+}

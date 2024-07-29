@@ -29,7 +29,7 @@ body {
   width: 100%;
   height: 100%;
   position: relative;
-  background-color: forestgreen;
+  background-color: #f5654f;
   box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
 }
 
@@ -42,19 +42,28 @@ body {
 
 .swiper-details {
   position: absolute;
-  height: auto;
+  height: 70px;
   width: 100%;
-  background-color: #007f5f;
-  color: #ffff3f;
+  background-color:#f5654f;
+  color: #fefdfc;
+  font-weight: 400;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 .swiper-details h2 {
   width: 100%;
+  height: auto;
   font-family: "Raleway", sans-serif;
   letter-spacing: 1px;
-  font-weight: 300;
+  font-weight: 600;
   text-align: left;
   padding: 2px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .swiper-details p {

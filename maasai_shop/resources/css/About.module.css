@@ -1,0 +1,160 @@
+.AboutSection {
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.AboutSection h1 {
+    font-family: "Righteous", sans-serif;
+    color: #f5654f;
+    font-size: 2.5rem;
+    padding-top: 50px;
+    padding-bottom: 30px;
+}
+
+.AboutSection h1 span {
+    color: #1a0410;
+}
+
+.AboutMessage {
+    width: 50%;
+    height: auto;
+    padding: 35px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    border-radius: 10px;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    justify-content: flex-start ;
+    align-items: flex-end;
+    text-align: center;
+}
+
+.AboutMessage p {
+    font-weight: 400;
+    letter-spacing: 0.75px;
+}
+
+.AboutMessage h4 {
+    font-weight: 600;
+    letter-spacing: 0.75px;
+    color: #f5654f;
+}
+
+.AboutMessage h4 span {
+    color: #1a0410;
+}
+
+.QualityAssurance {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 100px;
+}
+
+.QualityAssuranceTitle {
+    height: auto;
+    width: 50%;
+    font-size: 1.1rem;
+    font-weight: 700;
+    padding: 10px;
+    color: #1a0410;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.QualityAssuranceContainer {
+    height: auto;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+
+.DeliveryInfo {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.DeliveryInfoTitle {
+    height: auto;
+    width: 50%;
+    font-size: 1.1rem;
+    font-weight: 700;
+    padding: 10px;
+    color: #1a0410;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.DeliveryInfoContainer {
+    height: auto;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.ReturnPolicy {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+.AboutUsIcon {
+    height: 220px;
+    width: 220px;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    margin-right: 30px;
+    margin-left: 50px;
+    border-radius: 10px;
+    font-size: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFFAE5;
+    background: #f69586;
+    background: -webkit-radial-gradient(circle, #f69586 0%, #f26b57 50%, #f26b57 100%);
+    background: radial-gradient(circle, #f69586 0%, #f26b57 50%, #f26b57 100%);
+}
+
+
+.AboutUsDetails {
+    width: auto;
+    height: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: left;
+    letter-spacing: 0.75px;
+}
+
+.AboutUsDetails span {
+    color: #1a0410;
+    font-weight: 700;
+}

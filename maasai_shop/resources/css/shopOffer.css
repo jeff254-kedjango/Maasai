@@ -1,0 +1,377 @@
+.new-stock-offer-container {
+    width: 100%;
+    height: 90vh;
+    padding: 20px;
+    background-color: #FFFAE5;;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.new-stock-offer-container h2 {
+    width: 100%;
+    height: auto;
+    padding: 20px;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    font-family: "Righteous", sans-serif;
+    font-weight: 100;
+    font-size: 1.7rem; 
+    color: darkslategray;
+}
+
+.new-stock-section {
+    height: 70vh;
+    width: 100%;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.category-Swiper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    gap: 5px;
+    margin: 10px;
+    padding: 10px;
+}
+
+.newstock-display-container {
+  background-color: transparent;
+  height: 60vh;
+  width: 100%;
+  border-radius: 10px;
+  text-align: center;
+  position: relative;
+  transition: 0.2s;
+  background-color: #FFFAE5;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+
+.newstock-display-container:hover {
+    transition: 0.2s;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+.newstock-image {
+    height: 65%;
+    width: 100%;
+    position: relative;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    cursor: pointer;
+}
+
+.newstock-image img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.newstock-display-title {
+    height: 15%;
+    width: 100%;
+    font-size: small;
+    text-align: left;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 10px;
+}
+
+.newstock-display-details {
+    height: 20%;
+    width: 100%;
+    display: flex;
+    padding: 5px;
+    gap: 5px;
+}
+
+.newstock-price-container {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: small;
+}
+
+.newstock-sale-price {
+    text-decoration: line-through;
+    color: darkslategrey;
+}
+
+.newstock-price {
+    color: rgb(255, 125, 125);
+}
+
+.newstock-edit-icon {
+    height: 100%;
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: small;
+    cursor: pointer;
+    padding: 5px;
+    margin-right: 5px;
+}
+
+
+.newstock-display-icon {
+    font-size: larger;
+    opacity: 0.5;
+}
+
+
+.NoProductListDisplayCard {
+    height: 60vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ProductListDisplayEdit:hover {
+    color: #c09300;
+}
+
+.ProductListDisplayDelete {
+    height: 100%;
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: small;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.ProductListDisplayDelete:hover {
+    color: #a70b0b;
+}
+
+.ProductListDisplayImage img {
+object-fit: cover;
+height: 100%;
+width: 100%;
+border-top-left-radius: 10px;
+border-top-right-radius: 10px;
+}
+
+.offerDisplay {
+position: absolute;
+top: 0;
+left: 0;
+border-bottom-right-radius: 47.5%;
+border-top-left-radius: 10px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+height: 50px;
+width: 50px;
+background-color: red;
+color: #FFFAE5;
+}
+
+.StockContainer {
+width: 50px;
+height: 50px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+border-radius: 50%;
+position: absolute;
+bottom: 0;
+right: 0;
+margin: 10px 5px;
+color: #FFFAE5;
+background-color: rgba(47, 79, 79, 0.4);
+font-size: 0.8;
+
+}
+
+.StockContainerGreen {
+width: 50px;
+height: 50px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+border-radius: 50%;
+position: absolute;
+bottom: 0;
+right: 0;
+margin: 10px 5px;
+color: forestgreen;
+background-color: rgba(255, 250, 229, 0.8);
+font-size: 0.8;
+
+}
+
+.StockContainerRed {
+width: 50px;
+height: 50px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+border-radius: 50%;
+position: absolute;
+bottom: 0;
+right: 0;
+margin: 10px 5px;
+color: rgb(212, 99, 12);
+background-color: rgba(255, 250, 229, 0.8);
+font-size: 0.8;
+
+} 
+
+.ProductListDisplayTitle {
+height: 15%;
+width: 100%;
+font-size: small;
+text-align: left;
+display: flex;
+justify-content: flex-start;
+align-items: flex-start;
+padding: 10px;
+}
+
+.ProductListDisplayDetails {
+height: 20%;
+width: 100%;
+display: flex;
+padding: 5px;
+gap: 5px;
+}
+
+.ProductListDisplayPrice {
+height: 100%;
+width: 60%;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+font-size: small;
+}
+
+.ProductListDisplayPriceSP {
+text-decoration: line-through;
+color: darkslategrey;
+}
+
+.ProductListDisplayPriceP {
+color: rgb(255, 125, 125);
+}
+
+.ProductListDisplayEdit {
+height: 100%;
+width: 20%;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+font-size: small;
+cursor: pointer;
+padding: 5px;
+margin-right: 5px;
+}
+
+.NoProductListDisplayCard {
+height: 60vh;
+width: 100%;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.ProductListDisplayEdit:hover {
+color: #af8703;
+}
+
+.ProductListDisplayDelete {
+height: 100%;
+width: 20%;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+font-size: small;
+cursor: pointer;
+padding: 5px;
+}
+
+.ProductListDisplayDelete:hover {
+color: #006400;
+}
+
+.ProductListDisplayIcons {
+font-size: larger;
+opacity: 0.5;
+}
+
+
+.ProductListDisplayPagination {
+height: 20vh;
+width: 100%;
+display: flex;
+justify-content: flex-end;
+align-items: center;
+padding: 15px;
+}
+
+.PaginationContainer {
+display: flex;
+width: auto;
+height: 80px;
+padding: 5px;
+gap: 5px;
+}
+
+.PaginationContainer button {
+height: 100%;
+width: 150px;
+background-color: #004b23;
+color: #FFFAE5;
+border-radius: 10px;
+}
+
+.PaginationContainer button:hover{
+background-color: #00632e;
+}
+
+.PaginationContainer input {
+width: 100px;
+border-radius: 10px;
+}
+
+.PaginationContainer input:focus {
+border: 1px solid forestgreen;
+}
+
+
+/* Add media queries for responsiveness (optional): */
+
+@media (max-width: 768px) {
+.ProductListDisplayContainer {
+grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+}
+
+@media (max-width: 480px) {
+.ProductListDisplayContainer {
+grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+}
+}

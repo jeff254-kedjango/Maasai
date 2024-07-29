@@ -5,6 +5,7 @@
     padding: 0;
     margin: 0;
     position: relative;
+    overflow: hidden;
 }
 
 .ShopAdvertSection {
@@ -36,7 +37,7 @@
     width: 100%;
     border-radius: 10px;
     padding: 10px;
-    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, #007f5f 0px 0px 0px 1px inset;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;

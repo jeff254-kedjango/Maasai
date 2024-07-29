@@ -1,0 +1,15 @@
+.container {
+    height: 500px;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.container h1 {
+    font-size: medium;
+    font-weight: 600;
+    text-decoration: underline;
+}

@@ -6,8 +6,17 @@
     font-family: "Raleway", 'sans-serif';
     font-optical-sizing: auto;
     font-style: normal;
+    height: auto;
 }
 
+/* Add this new class for the transparent header on page load */
+.headerTransparent {
+    background-color: transparent;
+    box-shadow: none;
+    border-bottom: none;
+}
+
+/* Update the current header class to be applied when scrolling */
 .header {
     background-color: #FFFAE5; /* Background color */
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; /* Original shadow */
@@ -17,7 +26,50 @@
     left: 0;
     right: 0;
     z-index: 20000; /* Ensure it's in front of other elements */
+    transition: background-color 0.3s, box-shadow 0.3s, border-bottom 0.3s;
 }
+
+.HeaderBanner {
+    position: relative;
+    width: 100%;
+    height: 8vh;
+    background: #f69586;
+    background: -webkit-linear-gradient(20deg, #f69586 0%, #96297f 100%);
+    background: linear-gradient(20deg, #f69586 0%, #96297f 100%);
+    color: #fefdfc;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.BannerPitch {
+    width: auto;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    letter-spacing: 0.75px;
+    font-size: small;
+    padding: 10px;
+}
+
+.BannerIcon {
+    width: auto;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+    cursor: pointer;
+    padding: 10px;
+    font-weight: 800;
+}
+
+.BannerIcon p {
+    font-size: small;
+    font-weight: 500;
+}
+
 
 .container {
     max-width: 1280px;
@@ -28,12 +80,17 @@
 
 .headerContent {
     display: flex;
-    justify-content: space-between;
-    height: 100px;
+    gap: 50px;
+    height: 120px;
 }
 
 .logoNav {
     display: flex;
+    width: 30%;
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .logo {
@@ -52,55 +109,86 @@
     margin-left: 1.5rem;
 }
 
+.PageLinks {
+    width: 30%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
 .navLink {
     display: inline-flex;
-    align-items: center;
+    align-items: flex-end;
     padding-top: 0.25rem;
     padding-bottom: 0.25rem;
     border-bottom: 2px solid transparent;
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: #6B7280;
-    margin-right: 1rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: 0.75px;
+    color:#1a0410;
+    margin-right: 1.2rem;
     transition: color 0.3s;
 }
 
 .navLink:hover {
-    color: #374151;
+    color:rgba(26, 4, 16, 1);
+    font-size: 0.95rem;
 }
 
 .authCart {
+    width: 40%;
     display: flex;
+    justify-content: flex-end;
     align-items: center;
 }
 
 .authLink {
     display: inline-flex;
+    flex-direction: column;
     align-items: center;
+    justify-content: center;
+    gap: 2px;
     padding-top: 0.25rem;
     padding-bottom: 0.25rem;
     border-bottom: 2px solid transparent;
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: #6B7280;
+    font-size: 1.2rem;
+    font-weight: 300;
+    color:rgba(26, 4, 16, 0.5);
     margin-left: 1rem;
-    transition: color 0.3s;
+    transition: 0.6s ease;
+    padding-right: 20px;
+}
+
+.authLink p {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.75px;
+    color:rgba(26, 4, 16, 0.5);
+    transition: 0.6s ease;
+}
+
+.authLink p:hover {
+    color:rgba(26, 4, 16, 1);
+    transition: 0.6s ease;
 }
 
 .authLink:hover {
-    color: #374151;
+    color:rgba(26, 4, 16, 1);
+    transition: 0.6s ease;
+    font-size: 1.25rem;
 }
 
 .cartButton {
+    position: relative;
     margin-left: 1rem;
     display: inline-flex;
     align-items: center;
     padding-top: 0.25rem;
     padding-bottom: 0.25rem;
     border-bottom: 2px solid transparent;
-    font-size: 1.5rem;
+    font-size: 1.7rem;
     font-weight: 500;
-    color: #6B7280;
+    color: #f5654f;
     transition: color 0.3s;
 }
 
@@ -108,30 +196,162 @@
     color: #374151;
 }
 
+.cartNotification {
+    position: absolute;
+    height: 25px;
+    width: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f69586;
+    background: -webkit-radial-gradient(circle, #f69586 0%, #f26b57 50%, #f26b57 100%);
+    background: radial-gradient(circle, #f69586 0%, #f26b57 50%, #f26b57 100%);
+    color: #FFFAE5;
+    font-weight: 600;
+    font-size: small;
+    border-radius: 50%;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
+}
+
 .cartIcon {
-    height: 24px;
-    width: 24px;
+    height: 20px;
+    width:auto;
+    color: #f5654f;
+    box-shadow: #f5654f 0px 0px 0px 1px, #e5bbcf 0px 0px 0px 1px inset;
+    border-radius: 50%;
+    padding: 20px;
+    transition: 0.4s;
+}
+
+.cartIconActive {
+    background: #f69586;
+    background: -webkit-radial-gradient(circle, #f69586 0%, #f26b57 50%, #f26b57 100%);
+    background: radial-gradient(circle, #f69586 0%, #f26b57 50%, #f26b57 100%);
+    height: 20px;
+    width:auto;
+    color: #FFFAE5;
+    border-radius: 50%;
+    padding: 20px;
+    transition: 0.6s;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+.cartIcon:hover {
+    background: #f69586;
+    background: -webkit-radial-gradient(circle, #f69586 0%, #f26b57 50%, #f26b57 100%);
+    background: radial-gradient(circle, #f69586 0%, #f26b57 50%, #f26b57 100%);
+    color: #FFFAE5;
+    transition: 0.6s;
 }
 
 .footer {
     background-color: #FFFAE5;
     box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.1);
     min-height: 5.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.footerThinner {
+    width: 100%;
+    height: 2%;
+    position: relative;
+    background: #f69586;
+    background: -webkit-linear-gradient(20deg, #f69586 0%, #96297f 100%);
+    background: linear-gradient(20deg, #f69586 0%, #96297f 100%);
+    border-top: #f5654f solid 5px;
 }
 
 .footerContainer {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    height: 98%;
+    width: 100%;
+    display: flex;
+    padding: 5px;
+    position: relative;
+
 }
 
 .footerText {
-    color: #6B7280;
+    color: #FFFAE5;
     font-size: 0.875rem;
 }
+
+
+.footerLogo {
+    height: 70vh;
+    width: 25%;
+    padding: 30px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.footerDetailsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #1a0410;
+    font-weight: 600;
+    gap:10px;
+    width: 75%;
+    height: 70vh;
+    padding: 10%;
+    text-align: center;
+
+}
+
+.footerDetailsContainer h6 {
+    width: 75%;
+    letter-spacing: 0.75px;
+    margin-top: 60px;
+    color: #1a0410;
+    font-weight: 400;
+}
+
+.footerDetailsSection {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: auto;
+    padding: 10px;
+}
+
+.footerLogo img {
+    height: 50%;
+    width: auto;
+    object-fit: contain;
+}
+
+.footerDetails {
+    height: auto;
+    width: 30%;
+    color: #1a0410;
+    border-right: 2px solid #f26b57;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    letter-spacing: 0.75px;
+    font-weight: 400;
+    font-size: 0.8rem;
+    gap: 10px;
+    padding: 50px 20px;
+}
+
+.legalDetails {
+    height: auto;
+    width: 30%;
+    color: #1a0410;
+    gap: 10px;
+    padding: 50px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    letter-spacing: 0.8px;
+    font-weight: 400;
+    font-size: 0.75rem;
+}
+
 
 .modalOverlay {
     position: fixed;
@@ -145,23 +365,33 @@
 .modalBackdrop {
     position: fixed;
     inset: 0;
-    background-color: rgba(107, 114, 128, 0.75);
+    background-color:rgba(26, 4, 16, 0.7);
 }
 
 .modalContent {
-    background-color: white;
+    background-color: transparent;
     border-radius: 0.5rem;
     overflow: hidden;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transform: translateY(0);
     transition: transform 0.3s;
-    max-width: 32rem;
+    max-width: 80rem;
     width: 100%;
+    margin-top: 160px;
 }
 
 .modalBody {
-    background-color: white;
+    background-color: #FFFAE5;
     padding: 1.5rem;
+}
+
+.modalTitle {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
 }
 
 .modalIcon {
@@ -182,7 +412,9 @@
 }
 
 .modalText {
-    text-align: left;
+    min-height: 30vh;
+    width: 100%;
+    padding: 10px;
 }
 
 .modalTitle {
@@ -194,13 +426,120 @@
 .modalMessage {
     margin-top: 0.5rem;
     font-size: 0.875rem;
-    color: #6B7280;
+    font-weight: 700;
+    letter-spacing: 0.75px;
+    color: #1a0410;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.CartCard {
+    height: 15vh;
+    width: 100%;
+    display: flex;
+    border-radius: 10px;
+    background-color: transparent;
+    font-weight: 700;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
+}
+
+.CartImage {
+    width: 10%;
+    height: 100%;
+    padding: 3px;
+}
+
+.CartImage img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.CartDetails {
+    width: 40%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+}
+
+.CartAdjustment {
+    width: 45%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.CartAdjustmentBtns {
+    height: 50px;
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: transparent;
+    transition: 0.4s;
+}
+
+.CartAdjustmentQty {
+    height: 50px;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 50%;
+    background-color: transparent;
+    transition: 0.4s;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.CartAdjustmentQty span {
+    color: #f5654f;
+}
+
+.CartAdjustmentBtns:hover {
+    background-color: rgba(107, 114, 128, 0.4);
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
+    color: #FFFAE5;
+    transition: 0.2s;
+}
+
+.CartPrice {
+    width: 30%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: large;
+}
+
+
+.modalCartProductsContainer {
+    max-height: 35vh;
+    overflow-y: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 5px;
 }
 
 .modalFooter {
     background-color: #F9FAFB;
     padding: 1rem;
     display: flex;
+    gap: 10px;
     justify-content: flex-end;
 }
 
@@ -210,18 +549,51 @@
     border-radius: 0.375rem;
     border: none;
     padding: 0.5rem 1rem;
-    background-color: #DC2626;
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: white;
-    transition: background-color 0.3s;
+    background-color: transparent;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #f26b57;
+    transition: 0.6s ease;
 }
 
 .modalCloseButton:hover {
-    background-color: #B91C1C;
+    color: #ff0000;
+    transition: 0.6s ease;
+    font-weight: 800;
 }
 
 .modalCloseButton:focus {
-    outline: 2px solid #DC2626;
-    outline-offset: 2px;
+    outline:none;
+    outline-offset: none;
+    color: #ff0000;
+    transition: 0.6s ease;
+    font-weight: 800;
+}
+
+.modalCheckoutButton {
+    display: inline-flex;
+    justify-content: center;
+    border-radius: 0.375rem;
+    border: none;
+    padding: 0.5rem 1rem;
+    background-color: #2b9348;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #FFFAE5;
+    transition: background-color 0.3s;
+}
+
+.modalCheckoutButton:hover {
+    background-color: #278441;   
+}
+
+.modalCheckoutButton:focus {
+    outline: 2px solid #278441;
+}
+
+.modalTotal {
+    font-weight: 600;
+    font-size: larger;
+    padding: 5px;
+    width: auto;
 }
