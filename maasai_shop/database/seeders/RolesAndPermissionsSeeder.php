@@ -2,32 +2,47 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Illuminate\Database\Seeder;
+use App\Models\User;
 
 class RolesAndPermissionsSeeder extends Seeder
 {
     public function run()
     {
-        // Reset cached roles and permissions
-        app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
-
         // Create permissions
-        Permission::create(['name' => 'manage products']);
-        Permission::create(['name' => 'manage categories']);
-        Permission::create(['name' => 'manage orders']);
-        Permission::create(['name' => 'manage adverts']);
+        Permission::create(['name' => 'edit products']);
+        Permission::create(['name' => 'delete products']);
+        Permission::create(['name' => 'view orders']);
+        Permission::create(['name' => 'edit orders']);
+        Permission::create(['name' => 'delete orders']);
+        Permission::create(['name' => 'view user list']);
+        Permission::create(['name' => 'assign roles']);
 
-        // Create roles and assign created permissions
-        $role = Role::create(['name' => 'Admin']);
+        // Create roles and assign existing permissions
+        $role = Role::create(['name' => 'admin']);
         $role->givePermissionTo(Permission::all());
 
-        $role = Role::create(['name' => 'Manager']);
-        $role->givePermissionTo(['manage products', 'manage categories', 'manage orders']);
+        $role = Role::create(['name' => 'staff']);
+        $role->givePermissionTo(['edit products', 'delete products', 'view orders', 'edit orders']);
 
-        $role = Role::create(['name' => 'User']);
-        // No specific permissions for User role
+        Role::create(['name' => 'customer']);
+
+        // Assign roles to specific users
+        $user = User::find(1);
+        if ($user) {
+            $user->assignRole('admin');
+        }
+
+        $user = User::find(2);
+        if ($user) {
+            $user->assignRole('staff');
+        }
+
+        $user = User::find(3);
+        if ($user) {
+            $user->assignRole('customer');
+        }
     }
 }
-
