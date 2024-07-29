@@ -4,14 +4,16 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import '../../../css/category.css';
 import styles from '../../../css/components/ShopCategory.module.css';
+import { Link } from '@inertiajs/react';
+
 
 function ShopCategory({ categories }) {
   return (
     <div className={styles.ShopCategorySection}>
         <div className={styles.ShopCategoryContainer}>
-            <h2>Categories</h2>
+            <h2>CATEGORIES.</h2>
             <Swiper
-                slidesPerView={5}
+                slidesPerView={6}
                 spaceBetween={10}
                 navigation={true} 
 
@@ -25,12 +27,14 @@ function ShopCategory({ categories }) {
             >
             {categories && categories.map((category, index) => (
                 <SwiperSlide key={index} className="swiper-container-category">
-                    <div className="swiper-slide-cat-image">
-                        <img src={`/storage/${category.image}`} alt={category.name} />
-                    </div>
-                    <div className="swiper-slide-details-cat">
-                        <small>{category.name}</small>
-                    </div>
+                    <Link href={route('shop-categories.show', { category: category.id })}>
+                        <div className="swiper-slide-cat-image">
+                            <img src={`/storage/${category.image}`} alt={category.name} />
+                        </div>
+                        <div className="swiper-slide-details-cat">
+                            <small>{category.name}</small>
+                        </div>
+                    </Link>
                 </SwiperSlide>
             ))}
             </Swiper>

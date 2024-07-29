@@ -4,7 +4,7 @@ import Layout from '../Layouts/Layout';
 import styles from '../../css/CreateProduct.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
-import { route } from 'ziggy-js';
+// import { route } from 'ziggy-js';
 
 function CreateCategory({ flash }) {
     const [name, setName] = useState('');
@@ -14,15 +14,23 @@ function CreateCategory({ flash }) {
         image: null,
     });
     const [showFlash, setShowFlash] = useState(true);
+    const [loading, setLoading] = useState(false);
 
     function handleSubmit(e) {
         e.preventDefault();
+        setLoading(true);
+
         post(route('categories.store'), {
             onFinish: () => {
                 if (!Object.keys(errors).length) {
                     setShowFlash(true);
                     reset();
                 }
+                setLoading(false);
+            },
+            onError: (errors) => {
+                console.error('Form submission error:', errors);
+                setLoading(false);
             },
             forceFormData: true,
         });
@@ -76,7 +84,9 @@ function CreateCategory({ flash }) {
                         />
                         {errors.image && <div className={styles.error}>{errors.image}</div>}
                     </div>
-                    <button type="submit" className={styles.submitButton}>Create Category</button>
+                    <button type="submit" className={`${styles.submitButton} ${loading ? styles.loadingButton : ''}`} disabled={loading} >
+                        {loading ? "Creating Category..." : 'Create Category'}
+                    </button>
                 </form>
             </div>
         </Layout>

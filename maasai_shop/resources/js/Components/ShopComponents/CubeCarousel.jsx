@@ -12,6 +12,7 @@ import styles from '../../../css/components/CubeCarousel.module.css'
 import { EffectCube, Pagination, Autoplay } from 'swiper/modules';
 import '../../../css/styles.css';
 import resizeImage from './resizeImage';
+import { formatNumber } from "../../utils/formatNumber";
 
 
 function CubeCarousel({products}) {
@@ -42,19 +43,19 @@ function CubeCarousel({products}) {
         grabCursor={true}
         lazy={true}
         cubeEffect={{
-          shadow: true,
-          slideShadows: true,
-          shadowOffset: 20,
-          shadowScale: 0.5,
+            shadow: false,
+            slideShadows: false,
+            shadowOffset: 20,
+            shadowScale: 0.5,
         }}
         autoplay={{
-          delay: 4000,
-          disableOnInteraction: false,
+            delay: 4000,
+            disableOnInteraction: false,
         }}
-        modules={[EffectCube, Pagination, Autoplay ]}
+        modules={[EffectCube, Pagination, Autoplay]}
         className="mySwiper"
       >
-        {resizedImages.map((advert, index) => (
+        {resizedImages && resizedImages.map((advert, index) => (
           <SwiperSlide key={index}>
             <div className="swiper-container">
               <img
@@ -66,7 +67,7 @@ function CubeCarousel({products}) {
               <div className="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
               <div className="swiper-details">
                 <h2>{advert.name}</h2>
-                <p>Kes{advert.price}</p>
+                <p> Kes {formatNumber(advert.price)}</p>
               </div>
             </div>
           </SwiperSlide>

@@ -2,6 +2,7 @@ import React from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from 'swiper/modules';
+import { formatNumber } from "@/utils/formatNumber";
 // Import Swiper styles
 import "swiper/css";
 import 'swiper/css/navigation';
@@ -31,7 +32,7 @@ function MainPicCarousel({ products }) {
               </div>
               <div className="price-container">
                 <p>Kes</p>
-                {product.price}
+                { formatNumber(product.price) }
               </div>
             </div>
           </SwiperSlide>

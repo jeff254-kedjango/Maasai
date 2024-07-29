@@ -13,10 +13,12 @@ function CategoryEdit({ flash }) {
         description: '',
         image: null,
     });
-    const [showFlash, setShowFlash] = useState(true);
 
-    console.log(data);
+    console.log(errors); 
     
+    const [showFlash, setShowFlash] = useState(true);
+    const [loading, setLoading] = useState(false);
+
     useEffect(() => {
         setData({
             name: category.name || '',
@@ -27,6 +29,7 @@ function CategoryEdit({ flash }) {
 
     function handleSubmit(e) {
         e.preventDefault();
+        setLoading(true);
 
         const formData = new FormData();
         formData.append('_method', 'put');
@@ -36,7 +39,21 @@ function CategoryEdit({ flash }) {
             formData.append('image', data.image);
         }
 
-        router.post(`/admin/categories/${category.id}`, formData);
+        // Log formData to ensure it has the correct data
+        for (let pair of formData.entries()) {
+            console.log(pair[0] + ': ' + pair[1]);
+        }
+
+        router.put(route('categories.update', { category: category.id }), {
+            data: formData,
+            onFinish: () => {
+                setLoading(false);
+            },
+            onError: (errors) => {
+                console.error('Form submission error:', errors);
+                setLoading(false);
+            },
+        });
     }
 
     function handleClearForm() {
@@ -66,7 +83,7 @@ function CategoryEdit({ flash }) {
                             placeholder="Name"
                             className={styles.formInput}
                         />
-                        {errors.name && <div className={styles.error}>{errors.name}</div>}
+                        {errors.name && <div className={styles.ErrorText}>{errors.name}</div>}
                     </div>
 
                     <div className={`${styles.formGroup} ${styles.fullWidth}`}>
@@ -76,7 +93,7 @@ function CategoryEdit({ flash }) {
                             placeholder="Description"
                             className={styles.formInput}
                         />
-                        {errors.description && <div className={styles.error}>{errors.description}</div>}
+                        {errors.description && <div className={styles.ErrorText}>{errors.description}</div>}
                     </div>
 
                     <div className={`${styles.formGroup} ${styles.halfWidth}`}>
@@ -85,10 +102,11 @@ function CategoryEdit({ flash }) {
                             onChange={e => setData('image', e.target.files[0])}
                             className={styles.formInput}
                         />
-                        {errors.image && <div className={styles.error}>{errors.image}</div>}
-                        {data.image && <img src={`/storage/${data.image}`} className={styles.ProductEditImageDisplay} alt={data.name} />}
+                        {errors.image && <div className={styles.ErrorText}>{errors.image}</div>}
                     </div>
-                    <button type="submit" className={styles.submitButton}>Update Category</button>
+                    <button type="submit" className={`${styles.submitButton} ${loading ? styles.loadingButton : ''}`} disabled={loading} >
+                        {loading ? "Editing Category..." : 'Edit Category'}
+                    </button>
                 </form>
             </div>
         </Layout>

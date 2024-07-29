@@ -2,15 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { Head, useForm, usePage } from '@inertiajs/react';
 import Layout from '../Layouts/Layout';
 import styles from '../../css/CreateProduct.module.css';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
-import { router } from '@inertiajs/react';
 
 function ProductEdit({ flash }) {
     const { product, categories, auth } = usePage().props;
 
-    const { data, setData, post, errors, reset } = useForm({
+    const { data, setData, put, errors, reset } = useForm({
         name: '',
         description: '',
         price: '',
@@ -21,10 +19,11 @@ function ProductEdit({ flash }) {
         image2: null,
         image3: null,
         image4: null,
-        video: null, // Added video field
+        video: null,
     });
 
     const [showFlash, setShowFlash] = useState(true);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         setData({
@@ -38,66 +37,44 @@ function ProductEdit({ flash }) {
             image2: null,
             image3: null,
             image4: null,
-            video: null, // Set video field to null initially
+            video: null,
         });
     }, [product]);
 
     function handleSubmit(e) {
         e.preventDefault();
-
+        setLoading(true);
+    
         const formData = new FormData();
         formData.append('_method', 'put');
-        formData.append('name', data.name);
-        formData.append('description', data.description);
-        formData.append('price', data.price);
-        formData.append('sale_price', data.sale_price);
-        formData.append('category_id', data.category_id);
-        formData.append('quantity', data.quantity);
+        if (data.name) formData.append('name', data.name);
+        if (data.description) formData.append('description', data.description);
+        if (data.price) formData.append('price', data.price);
+        if (data.sale_price) formData.append('sale_price', data.sale_price);
+        if (data.category_id) formData.append('category_id', data.category_id);
+        if (data.quantity) formData.append('quantity', data.quantity);
     
         ['image1', 'image2', 'image3', 'image4', 'video'].forEach(field => {
             if (data[field]) {
                 formData.append(field, data[field]);
             }
         });
-
-        router.post(`/admin/update-product/${product.id}`, formData, {
+    
+        put(route(`admin.update-product`, { product: product.id }), {
+            data: formData,
             onFinish: () => {
-                // Additional logic after form submission
-                handleFormFinish();
-            }
+                setLoading(false);
+            },
+            onError: (errors) => {
+                console.log('Form submission error:', errors);
+                setLoading(false);
+            },
         });
     }
 
     function handleClearForm() {
         setShowFlash(false);
         reset();
-    }
-
-    function handleFormFinish() {
-        // Example additional logic:
-    
-        // 1. Reset the form fields if the form submission was successful
-        reset();
-    
-        // 2. Display a notification
-        if (flash?.success) {
-            // Display success notification
-            alert(flash.success);
-        } else if (flash?.error) {
-            // Display error notification
-            alert(flash.error);
-        }
-    
-        // 3. Redirect to another page
-        // You can conditionally redirect based on flash messages or other criteria
-        if (flash?.success) {
-            // Redirect to the dashboard or product list
-            router.visit('/dashboard');
-        }
-    
-        // 4. Update local state or context if necessary
-        // Example: Update a context or state that holds the list of products
-        // updateProductsList(); // This is a hypothetical function
     }
 
     return (
@@ -114,8 +91,6 @@ function ProductEdit({ flash }) {
                 )}
                 <form className={styles.productForm} onSubmit={handleSubmit} encType="multipart/form-data">
                     <h2>Edit Product</h2>
-                    <input type="hidden" name="_token" value="{{ csrf_token() }}" />
-                    <input type="hidden" name="_method" value="PUT" />
                     <div className={`${styles.formGroup} ${styles.fullWidth}`}>
                         <small>Name</small>
                         <input
@@ -125,7 +100,7 @@ function ProductEdit({ flash }) {
                             placeholder="Name"
                             className={styles.formInput}
                         />
-                        {errors.name && <div className={styles.error}>{errors.name}</div>}
+                        {errors.name && <div className={styles.ErrorText}>{errors.name}</div>}
                     </div>
 
                     <div className={`${styles.formGroup} ${styles.fullWidth}`}>
@@ -136,11 +111,11 @@ function ProductEdit({ flash }) {
                             placeholder="Description"
                             className={styles.formInput}
                         />
-                        {errors.description && <div className={styles.error}>{errors.description}</div>}
+                        {errors.description && <div className={styles.ErrorText}>{errors.description}</div>}
                     </div>
 
                     <div className={`${styles.formGroup} ${styles.halfWidth}`}>
-                        <small>Sale Price</small>
+                        <small>Price</small>
                         <input
                             type="number"
                             value={data.price}
@@ -148,11 +123,11 @@ function ProductEdit({ flash }) {
                             placeholder="Price"
                             className={styles.formInput}
                         />
-                        {errors.price && <div className={styles.error}>{errors.price}</div>}
+                        {errors.price && <div className={styles.ErrorText}>{errors.price}</div>}
                     </div>
 
                     <div className={`${styles.formGroup} ${styles.halfWidth}`}>
-                        <small>Marked Price</small>
+                        <small>Discount Price ( * Fill ONLY if product is on discount )</small>
                         <input
                             type="number"
                             value={data.sale_price}
@@ -160,11 +135,11 @@ function ProductEdit({ flash }) {
                             placeholder="Sale Price"
                             className={styles.formInput}
                         />
-                        {errors.sale_price && <div className={styles.error}>{errors.sale_price}</div>}
+                        {errors.sale_price && <div className={styles.ErrorText}>{errors.sale_price}</div>}
                     </div>
 
                     <div className={`${styles.formGroup} ${styles.halfWidth}`}>
-                        <small>Quantity</small>
+                        <small>Stock Quantity ( * Stock quantity are visible to clients for informed shopping )</small>
                         <input
                             type="number"
                             value={data.quantity}
@@ -172,7 +147,7 @@ function ProductEdit({ flash }) {
                             placeholder="Quantity"
                             className={styles.formInput}
                         />
-                        {errors.quantity && <div className={styles.error}>{errors.quantity}</div>}
+                        {errors.quantity && <div className={styles.ErrorText}>{errors.quantity}</div>}
                     </div>
 
                     <div className={`${styles.formGroup} ${styles.halfWidth}`}>
@@ -189,7 +164,7 @@ function ProductEdit({ flash }) {
                                 </option>
                             ))}
                         </select>
-                        {errors.category_id && <div className={styles.error}>{errors.category_id}</div>}
+                        {errors.category_id && <div className={styles.ErrorText}>{errors.category_id}</div>}
                     </div>
 
                     <div className={`${styles.formGroup} ${styles.halfWidth}`}>
@@ -199,7 +174,7 @@ function ProductEdit({ flash }) {
                             onChange={e => setData({ ...data, image1: e.target.files[0] })}
                             className={styles.formInput}
                         />
-                        {errors.image1 && <div className={styles.error}>{errors.image1}</div>}
+                        {errors.image1 && <div className={styles.ErrorText}>{errors.image1}</div>}
                         {product.image1 && <img src={`/storage/${product.image1}`} className={styles.ProductEditImageDisplay} alt="Front Image" />}
                     </div>
 
@@ -210,7 +185,7 @@ function ProductEdit({ flash }) {
                             onChange={e => setData({ ...data, image2: e.target.files[0] })}
                             className={styles.formInput}
                         />
-                        {errors.image2 && <div className={styles.error}>{errors.image2}</div>}
+                        {errors.image2 && <div className={styles.ErrorText}>{errors.image2}</div>}
                         {product.image2 && <img src={`/storage/${product.image2}`} className={styles.ProductEditImageDisplay} alt="Second Image" />}
                     </div>
 
@@ -221,7 +196,7 @@ function ProductEdit({ flash }) {
                             onChange={e => setData({ ...data, image3: e.target.files[0] })}
                             className={styles.formInput}
                         />
-                        {errors.image3 && <div className={styles.error}>{errors.image3}</div>}
+                        {errors.image3 && <div className={styles.ErrorText}>{errors.image3}</div>}
                         {product.image3 && <img src={`/storage/${product.image3}`} className={styles.ProductEditImageDisplay} alt="Third Image" />}
                     </div>
 
@@ -232,7 +207,7 @@ function ProductEdit({ flash }) {
                             onChange={e => setData({ ...data, image4: e.target.files[0] })}
                             className={styles.formInput}
                         />
-                        {errors.image4 && <div className={styles.error}>{errors.image4}</div>}
+                        {errors.image4 && <div className={styles.ErrorText}>{errors.image4}</div>}
                         {product.image4 && <img src={`/storage/${product.image4}`} className={styles.ProductEditImageDisplay} alt="Fourth Image" />}
                     </div>
 
@@ -243,11 +218,13 @@ function ProductEdit({ flash }) {
                             onChange={e => setData({ ...data, video: e.target.files[0] })}
                             className={styles.formInput}
                         />
-                        {errors.video && <div className={styles.error}>{errors.video}</div>}
+                        {errors.video && <div className={styles.ErrorText}>{errors.video}</div>}
                         {product.video && <video src={`/storage/${product.video}`} controls />}
                     </div>
 
-                    <button type="submit" className={styles.submitButton}>Update Product</button>
+                    <button type="submit" className={`${styles.submitButton} ${loading ? styles.loadingButton : ''}`} disabled={loading} >
+                        {loading ? "Editing Product..." : 'Edit Product'}
+                    </button>
                 </form>
             </div>
         </Layout>

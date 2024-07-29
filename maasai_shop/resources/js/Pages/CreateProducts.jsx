@@ -21,18 +21,32 @@ function CreateProducts({ auth, categories, flash }) {
   });
 
   const [showFlash, setShowFlash] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   function handleSubmit(e) {
-      e.preventDefault();
-      post(route('admin.create-product'), {
-          onFinish: () => {
-              if (!Object.keys(errors).length) {
-                  setShowFlash(true);
-                  reset();
-              }
-          },
-          forceFormData: true,
-      });
+    e.preventDefault();
+    setLoading(true);
+
+    const formData  = new FormData();
+    for (const key in data) {
+        formData.append(key, data[key]);
+    };
+
+    post(route('admin.create-product'), {
+      data: formData,
+      onFinish: () => {
+        if (!Object.keys(errors).length) {
+            setShowFlash(true);
+            reset();
+        }
+        setLoading(false)
+      },
+      onError: (errors) => {
+        // console.log('Form submission error:', errors);
+        setLoading(false);
+      },
+      forceFormData: true,
+    });
   }
 
   // console.log(data)
@@ -67,7 +81,7 @@ function CreateProducts({ auth, categories, flash }) {
               placeholder="Name"
               className={styles.formInput}
             />
-            {errors.name && <div className={styles.error}>{errors.name}</div>}
+            {errors.name && <div className={styles.ErrorText}>{errors.name}</div>}
           </div>
 
           <div className={`${styles.formGroup} ${styles.fullWidth}`}>
@@ -78,11 +92,11 @@ function CreateProducts({ auth, categories, flash }) {
               placeholder="Description"
               className={styles.formInput}
             />
-            {errors.description && <div className={styles.error}>{errors.description}</div>}
+            {errors.description && <div className={styles.ErrorText}>{errors.description}</div>}
           </div>
 
           <div className={`${styles.formGroup} ${styles.halfWidth}`}>
-            <small>Sale Price</small>
+            <small>Price</small>
             <input
               type="number"
               value={data.price}
@@ -90,11 +104,12 @@ function CreateProducts({ auth, categories, flash }) {
               placeholder="Price"
               className={styles.formInput}
             />
-            {errors.price && <div className={styles.error}>{errors.price}</div>}
+            {errors.price && <div className={styles.ErrorText}>{errors.price}</div>}
           </div>
 
+
           <div className={`${styles.formGroup} ${styles.halfWidth}`}>
-            <small>Marked Price</small>
+            <small>Discount Price ( * ONLY if product is on discount )</small>
             <input
               type="number"
               value={data.sale_price}
@@ -102,11 +117,11 @@ function CreateProducts({ auth, categories, flash }) {
               placeholder="Sale Price"
               className={styles.formInput}
             />
-            {errors.sale_price && <div className={styles.error}>{errors.sale_price}</div>}
+            {errors.sale_price && <div className={styles.ErrorText}>{errors.sale_price}</div>}
           </div>
 
           <div className={`${styles.formGroup} ${styles.halfWidth}`}>
-            <small>Stock Quantity</small>
+            <small>Stock Quantity ( * Stock quantity are visible to clients for informed shopping )</small>
             <input
               type="number"
               value={data.quantity}
@@ -114,7 +129,7 @@ function CreateProducts({ auth, categories, flash }) {
               placeholder="Quantity"
               className={styles.formInput}
             />
-            {errors.quantity && <div className={styles.error}>{errors.quantity}</div>}
+            {errors.quantity && <div className={styles.ErrorText}>{errors.quantity}</div>}
           </div>
 
           <div className={`${styles.formGroup} ${styles.halfWidth}`}>
@@ -131,7 +146,7 @@ function CreateProducts({ auth, categories, flash }) {
                 </option>
               ))}
             </select>
-            {errors.category_id && <div className={styles.error}>{errors.category_id}</div>}
+            {errors.category_id && <div className={styles.ErrorText}>{errors.category_id}</div>}
           </div>
 
           <div className={`${styles.formGroup} ${styles.halfWidth}`}>
@@ -141,7 +156,7 @@ function CreateProducts({ auth, categories, flash }) {
               onChange={e => setData('image1', e.target.files[0])}
               className={styles.formInput}
             />
-            {errors.image1 && <div className={styles.error}>{errors.image1}</div>}
+            {errors.image1 && <div className={styles.ErrorText}>{errors.image1}</div>}
           </div>
 
           <div className={`${styles.formGroup} ${styles.halfWidth}`}>
@@ -151,7 +166,7 @@ function CreateProducts({ auth, categories, flash }) {
               onChange={e => setData('image2', e.target.files[0])}
               className={styles.formInput}
             />
-            {errors.image2 && <div className={styles.error}>{errors.image2}</div>}
+            {errors.image2 && <div className={styles.ErrorText}>{errors.image2}</div>}
           </div>
 
           <div className={`${styles.formGroup} ${styles.halfWidth}`}>
@@ -161,7 +176,7 @@ function CreateProducts({ auth, categories, flash }) {
               onChange={e => setData('image3', e.target.files[0])}
               className={styles.formInput}
             />
-            {errors.image3 && <div className={styles.error}>{errors.image3}</div>}
+            {errors.image3 && <div className={styles.ErrorText}>{errors.image3}</div>}
           </div>
 
           <div className={`${styles.formGroup} ${styles.halfWidth}`}>
@@ -171,7 +186,7 @@ function CreateProducts({ auth, categories, flash }) {
               onChange={e => setData('image4', e.target.files[0])}
               className={styles.formInput}
             />
-            {errors.image4 && <div className={styles.error}>{errors.image4}</div>}
+            {errors.image4 && <div className={styles.ErrorText}>{errors.image4}</div>}
           </div>
 
           <div className={`${styles.formGroup} ${styles.fullWidth}`}>
@@ -181,10 +196,12 @@ function CreateProducts({ auth, categories, flash }) {
                 onChange={e => setData({ ...data, video: e.target.files[0] })}
                 className={styles.formInput}
             />
-            {errors.video && <div className={styles.error}>{errors.video}</div>}
+            {errors.video && <div className={styles.ErrorText}>{errors.video}</div>}
           </div>
 
-          <button type="submit" className={styles.submitButton}>Create Product</button>
+          <button type="submit" className={`${styles.submitButton} ${loading ? styles.loadingButton : ''}`} disabled={loading} >
+            {loading ? "Submiting Product..." : 'Create Advert'}
+          </button>
         </form>
       </div>
     </Layout>

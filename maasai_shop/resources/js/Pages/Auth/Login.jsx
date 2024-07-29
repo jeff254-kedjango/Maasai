@@ -28,8 +28,6 @@ export default function Login({ status, canResetPassword }) {
         post(route('login'));
     };
 
-    // console.log(status);
-
     return (
         <Layout>
             <Head title="Log in" />
@@ -48,7 +46,7 @@ export default function Login({ status, canResetPassword }) {
                             className="mt-1 block w-full"
                             autoComplete="username"
                             isFocused={true}
-                            style={{ backgroundColor: '#FFFAE5' }}
+                            style={{ backgroundColor: '#FFFAE5', color: 'darkslategrey' }}
                             onChange={(e) => setData('email', e.target.value)}
                         />
 
@@ -65,7 +63,7 @@ export default function Login({ status, canResetPassword }) {
                             value={data.password}
                             className="mt-1 block w-full"
                             autoComplete="current-password"
-                            style={{ backgroundColor: '#FFFAE5' }}
+                            style={{ backgroundColor: '#FFFAE5', color: 'darkslategrey' }}
                             onChange={(e) => setData('password', e.target.value)}
                         />
 

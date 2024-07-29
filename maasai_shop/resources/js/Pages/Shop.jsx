@@ -7,22 +7,24 @@ import MainPicCarousel from '@/Components/ShopComponents/MainPicCarousel';
 import styles from '../../css/Shop.module.css'
 import ShopCategory from '@/Components/ShopComponents/ShopCategory';
 import ProductsDisplay from '@/Components/ShopComponents/ProductsDisplay';
+import NewStock from '@/Components/ShopComponents/NewStock';
+import Offers from '@/Components/ShopComponents/Offers';
 
-
-function Shop({ orders, products, adverts, categories, newOrders, newStock }) {
+function Shop({ orders, products, adverts, categories, newOrders, newStock, offers, error }) {
   
-  console.log('orders', orders);
-  console.log('products', products);
-  console.log('adverts', adverts);
-  console.log('categories', categories);
-  console.log('newOrders', newOrders);
-  console.log('newStock', newStock);
+  // console.log('orders', orders);
+  // console.log('products', products);
+  // console.log('adverts', adverts);
+  // console.log('categories', categories);
+  // console.log('newOrders', newOrders);
+  // console.log('newStock', newStock);
   
   
   return (
     <Layout>
       <Head title="Shop" />
       <div className={styles.ShopContainer}>
+        {error && <p>{error}</p>}
         <div className={styles.ShopAdvertSection}>
           <div className={styles.ShopAdvertVidContainer}>
             < MainVidCarousel adverts={adverts} />
@@ -40,6 +42,8 @@ function Shop({ orders, products, adverts, categories, newOrders, newStock }) {
         </div>
         < ShopCategory categories={categories} />
         < ProductsDisplay products={products} />
+        < NewStock products={newStock} />
+        < Offers products={offers} />
       </div>
     </Layout>
   )

@@ -5,17 +5,24 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronUp, faPenToSquare, faTrashCan, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 import { Link, usePage, router } from '@inertiajs/react';
-
+import LoaderAnimation from '../Lotie/LoaderAnimation';
 
 function ProductList({ setShow, products }) {
 
     const [inputValue, setInputValue] = useState(1);
     const [start, setStart] = useState(0);
     const [end, setEnd] = useState(15);
+    const [showModal, setShowModal] = useState(false);
+    const [selectedAdvert, setSelectedAdvert] = useState(null);
+    const [loading, setLoading] = useState(false); // State for loading indicator
 
     const handleInputChange = (event) => {
       setInputValue(event.target.value);
     };
+
+    function formatNumber(number) {
+        return new Intl.NumberFormat().format(number);
+    }
   
     const prod = products ? products.slice(start, end) : [];
 
@@ -42,7 +49,31 @@ function ProductList({ setShow, products }) {
     };
 
 
+    const handleDeleteClick = (element) => {
+        setSelectedAdvert(element);
+        setShowModal(true);
+    };
+
     const baseUrl = import.meta.env.VITE_APP_URL || 'http://127.0.0.1:8000/';
+
+    const handleConfirmDelete = () => {
+        if (selectedAdvert) {
+            setLoading(true); // Show loader
+            router.delete(route('admin.destroy-product', { id: selectedAdvert.id }), {
+                preserveState: true,
+                onSuccess: () => {
+                    setLoading(false); // Hide loader
+                    setShowModal(false);
+                    setSelectedAdvert(null);
+                },
+                onError: (errors) => {
+                    setLoading(false); // Hide loader
+                    console.error('Error:', errors);
+                }
+            });
+        }
+    };
+
 
   return (
     <div className={styles.ProductListSection}>
@@ -71,27 +102,26 @@ function ProductList({ setShow, products }) {
                             <p>{element.name}</p>
                         </div>
                         <div className={styles.ProductListDisplayDetails}>
-                            <div className={styles.ProductListDisplayPrice}>
-                                <p className={styles.ProductListDisplayPriceSP}>{element.sale_price}</p>
-                                <p className={styles.ProductListDisplayPriceP}>{element.price}</p>
-                            </div>
+                                {element.sale_price ? 
+                                    <div className={styles.ProductListDisplayPrice}>
+                                        <p className={styles.ProductListDisplayPriceSP}>Kes  {formatNumber(element.price)} </p>
+                                        <p className={styles.ProductListDisplayPriceP}>Kes{formatNumber(element.sale_price)}</p>
+                                    </div>
+                                    :
+                                    <div className={styles.ProductListDisplayPrice}>
+                                        <p className={styles.ProductListDisplayPriceP}>Kes {formatNumber(element.price)}</p>
+                                    </div>
+                                }
                             <Link href={route('admin.edit-product', { id: element.id })}>
                                 <div className={styles.ProductListDisplayEdit}>
                                     <FontAwesomeIcon className={styles.ProductListDisplayIcons} icon={faPenToSquare} />
                                     <p>Edit</p>
                                 </div>
                             </Link>
-                            <Link
-                                as="button"
-                                method="delete"
-                                href={route('admin.destroy-product', { id: element.id })}
-                                type="button"
-                            >
-                                <div className={styles.ProductListDisplayDelete}>
-                                    <FontAwesomeIcon className={styles.ProductListDisplayIcons} icon={faTrashCan} />
-                                    <p>Delete</p>
-                                </div>
-                            </Link>
+                            <div onClick={() => handleDeleteClick(element)} className={styles.ProductListDisplayDelete}>
+                                <FontAwesomeIcon className={styles.ProductListDisplayIcons} icon={faTrashCan} />
+                                <p>Delete</p>
+                            </div>
                         </div>
                     </div>
                 ))}
@@ -113,6 +143,18 @@ function ProductList({ setShow, products }) {
                 </div>
                 <p>Page {inputValue} / {pages} </p>
             </div>
+
+            {showModal && (
+                <div className={styles.ConfirmationModal}>
+                    <div className={styles.ConfirmationContent}>
+                        <p>Are you sure you want to delete <span>{selectedAdvert?.name}</span>?</p>
+                        {loading && <LoaderAnimation />} {/* Show loader when loading */}
+                        <button className={styles.ConfirmationConfirm} onClick={handleConfirmDelete}>Confirm</button>
+                        <button className={styles.ConfirmationCancel} onClick={() => setShowModal(false)}>Cancel</button>
+                    </div>
+                </div>
+            )}
+
         </div>
     </div>
   )
