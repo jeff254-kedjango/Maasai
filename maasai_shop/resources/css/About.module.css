@@ -158,3 +158,52 @@
     color: #1a0410;
     font-weight: 700;
 }
+
+@media (max-width: 768px) {
+    .AboutMessage {
+        width: 100%;
+        margin: 10px;
+        height: auto;
+        padding: 15px;
+        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+        border-radius: 10px;
+        display: flex;
+        gap: 10px;
+        flex-direction: column;
+        justify-content: flex-start ;
+        align-items: flex-end;
+        text-align: center;
+    }
+    
+    .AboutMessage p {
+        font-weight: 400;
+        letter-spacing: 0.75px;
+    }
+    
+    .AboutMessage h4 {
+        font-weight: 600;
+        letter-spacing: 0.75px;
+        color: #f5654f;
+    }
+    
+    .AboutMessage h4 span {
+        color: #1a0410;
+    }
+
+    .AboutUsIcon {
+        height: 65px;
+        width: 155px;
+        box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+        margin-right: 10px;
+        margin-left: 10px;
+        border-radius: 10px;
+        font-size: 1.35rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #FFFAE5;
+        background: #f69586;
+        background: -webkit-radial-gradient(circle, #f69586 0%, #f26b57 50%, #f26b57 100%);
+        background: radial-gradient(circle, #f69586 0%, #f26b57 50%, #f26b57 100%);
+    }
+}

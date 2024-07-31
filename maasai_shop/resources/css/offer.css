@@ -91,3 +91,31 @@
 .swiper-button-prev {
   left: 10px;
 }
+
+@media (max-width: 768px ) {
+  .my-Swiper {
+    height: 100%;
+  }
+
+  .swiper-container-pic {
+    width: 100%;
+    height: auto;
+  }
+
+  .swiper-slide-image {
+    width: 30vw;
+    height: 100%;
+  }
+  .swiper-slide-image img {
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .price-container {
+    height: 80px;
+    width: 80px;
+    font-size: small;
+    font-weight: 600;
+    letter-spacing: 0.75px;
+  }
+}

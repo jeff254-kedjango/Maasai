@@ -109,8 +109,8 @@
     left: 0;
     font-size: 50px;
     opacity: 1;
-    height: 80px;
-    width: auto;
+    height: auto;
+    width: 80px;
     margin: 10px;
 }
 
@@ -147,4 +147,41 @@
 .NoAdvertsContainer p {
     font-weight: 500;
     letter-spacing: 0.75px;
+}
+
+
+@media (max-width: 768px) {
+
+    .companyLogo {
+        width: 60px;
+    }
+
+    .controls button {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .loadingIndicator {
+        font-size: 10px;
+        transform: translate(0, 0);
+    }
+
+    .videoPlayerContainer {
+        border-radius: 2px;
+    }
+
+    .videoPlayer {
+        border-radius: 5px;
+    }
+    
+    .AdvertVidDetails {
+        height: auto;
+        width: 100%;
+        display: none;
+    }
+
+    .advertTitle {
+        font-size: x-small;
+    }
+
 }

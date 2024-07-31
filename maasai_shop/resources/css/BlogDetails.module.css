@@ -118,3 +118,56 @@
     text-align: left;
 }
 
+@media (max-width: 768px) {
+
+    .BlogDetailsOverlay h2 {
+        font-weight: 700;
+        width: 75%;
+        font-size: 1.3rem;
+        color: rgba(255, 250, 229, 0.9);
+        letter-spacing: 0.75px;
+    }
+
+
+    .ParagraphContainers {
+        height: auto;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding-left: 15%;
+        padding-right: 15%;
+    }
+
+    .ImageSection {
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .BlogImageSection {
+        width: 100%;
+        height: 30vh;
+        object-fit: contain;
+        object-position: center;
+        border-radius: 10px;
+    }
+    
+    .ParagraphSection {
+        width: 100%;
+        height: auto;
+    
+    }
+    
+    .Paragraph {
+        width: 100%;
+        height: auto;
+        letter-spacing: 0.75px;
+        font-size: 1rem;
+        margin-top: 20px;
+        text-align: left;
+    }
+    
+}

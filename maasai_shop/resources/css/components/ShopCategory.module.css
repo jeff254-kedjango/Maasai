@@ -21,8 +21,46 @@
     gap: 20px;
 }
 
+.ShopCategoryMobileContainer {
+    display: none;
+}
+
+
 .ShopCategoryContainer h2 {
     font-family: "Righteous", sans-serif;
     font-weight: 100; 
     color: darkslategray;  
+}
+
+
+@media ( max-width: 768px ) {
+
+    .ShopCategorySection {
+        padding: 60px 20px;
+        height: 60vh;
+    }
+
+    .ShopCategoryMobileContainer {
+        width: 100%;
+        height: 100%;
+        background-color: transparent;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 1.5rem;
+        font-weight: 600;
+        gap: 20px;
+    }
+
+    .ShopCategoryContainer {
+        display: none;
+    }
+
+    .ShopCategoryMobileContainer h2 {
+        font-family: "Righteous", sans-serif;
+        font-weight: 100; 
+        color: darkslategray; 
+        font-size: 1.1rem;
+    }
+
 }

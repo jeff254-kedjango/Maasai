@@ -95,3 +95,28 @@ body {
     transform: rotate(360deg);
   }
 }
+
+
+@media (max-width: 768px ) {
+  .mySwiper {
+    height: auto;
+  }
+
+  .swiper {
+    width: 160px;
+    height: 160px;
+  }
+
+  .swiper-container {
+    margin-top: 10px;
+  }
+  
+  .swiper-details h2 {
+    font-size: x-small;
+  }
+    
+  .swiper-details p {
+    padding: 2px;
+  }
+
+}

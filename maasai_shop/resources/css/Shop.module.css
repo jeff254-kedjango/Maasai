@@ -16,6 +16,7 @@
     gap: 10px;
     overflow: hidden;
     position: relative;
+    flex-direction: row;
 }
 
 .ShopAdvertVidContainer {
@@ -43,7 +44,6 @@
     justify-content: flex-start;
     align-items: center;
     position: relative;
-
 }
 
 .ShopAdvertCubeContainer h5 {
@@ -70,4 +70,50 @@
     font-family: "Righteous", sans-serif;
     font-size: 100;
     color: darkslategray;
+}
+
+/* Media Query for Mobile Devices */
+@media (max-width: 768px) {
+    .ShopAdvertSection {
+        flex-direction: column;
+        height: auto;
+        padding: 15px;
+        margin-top: 20px;
+    }
+
+    .ShopAdvertVidContainer {
+        width: 100%;
+        height: 60vh;
+    }
+
+    .ShopAdvertPicsContainer {
+        width: 100%;
+        height: auto;
+        flex-direction: flex;
+    }
+
+    .ShopAdvertCubeContainer {
+        height: 50vh;
+        width: 100%;
+        border-radius: 5px;
+        padding: 10px;
+        box-shadow: rgba(141, 160, 192, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        position: relative;
+        margin-top: 30px;
+    }
+
+    .ShopAdvertCubeContainer h5 {
+        margin-top: 1px;
+    }
+
+    .ShopAdvertBannerContainer {
+        height: 20vh;
+        width: 100%;
+        margin-top: 20px;
+    }
+
 }

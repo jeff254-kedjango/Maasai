@@ -365,13 +365,63 @@ border: 1px solid forestgreen;
 /* Add media queries for responsiveness (optional): */
 
 @media (max-width: 768px) {
-.ProductListDisplayContainer {
-grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-}
+    .ProductListDisplayContainer {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+
+    .new-stock-offer-container {
+        width: 100%;
+        height: auto;
+        background-color: transparent;
+        margin: 10px 0px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    .new-stock-section {
+        display: none;
+    }
+
+    .new-stock-offer-container h2 {
+        width: 100%;
+        height: auto;
+        padding: 20px;
+        display: flex;
+        justify-content: center; 
+        align-items: flex-start; 
+        font-family: "Righteous", sans-serif;
+        font-weight: 100;
+        font-size: 1.1rem; 
+        color: #554d2c;
+    }
+
+    .new-mobile-stock-section {
+        height: 50vh !important;
+        width: 100%;
+        border-radius: 10px;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+    }
+
+    .newstock-display-container {
+        background-color: transparent;
+        height: 45vh !important;
+        width: 50% !important;
+        border-radius: 10px;
+        text-align: center;
+        position: relative;
+        transition: 0.2s;
+        background-color: #FFFAE5;
+        box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+      }
 }
 
-@media (max-width: 480px) {
+
+/* @media (max-width: 480px) {
 .ProductListDisplayContainer {
 grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
 }
-}
+} */

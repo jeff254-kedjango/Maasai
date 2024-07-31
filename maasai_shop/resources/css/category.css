@@ -86,3 +86,29 @@
 .swiper-button-prev::after {
     font-size: 20px;
 }
+
+
+@media (max-width: 760px ){
+    .category-Swiper {
+        width: 100%;
+    }
+
+    .swiper-container-category {
+        height: 25vh;
+    }
+
+    .swiper-slide-cat-image {
+        width: 80px;
+        height: 80px;
+    }
+
+    .swiper-slide-cat-image img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .swiper-slide-details-cat {
+        font-size: 1rem;
+        font-weight: 500;
+    }
+}
