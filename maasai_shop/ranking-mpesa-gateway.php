@@ -81,7 +81,7 @@ function mpesa_init_gateway_class() {
                 'callback_url' => array(
                     'title' => 'Callback URL',
                     'type' => 'text',
-                    'description' => 'URL where Mpesa will send the payment notification.',
+                    'description' => 'Enter the Callback URL where Mpesa will send the payment notification. It should be in the format: https://yourdomain.com/wp-admin/admin-ajax.php?action=mpesa_handle_callback. Replace "yourdomain.com" with your actual domain name.',
                     'default' => 'https://yourwebsite.com/wp-admin/admin-ajax.php?action=mpesa_handle_callback'
                 ),
                 'sandbox_url' => array(
