@@ -38,6 +38,10 @@ function mpesa_init_gateway_class() {
             $this->sandbox_url = $this->get_option('sandbox_url');
 
             add_action('woocommerce_update_options_payment_gateways_' . $this->id, array($this, 'process_admin_options'));
+
+            // Handle Mpesa callback
+            add_action('wp_ajax_mpesa_handle_callback', array($this, 'mpesa_handle_callback'));
+            add_action('wp_ajax_nopriv_mpesa_handle_callback', array($this, 'mpesa_handle_callback'));
         }
 
         public function init_form_fields() {
@@ -78,7 +82,7 @@ function mpesa_init_gateway_class() {
                     'title' => 'Callback URL',
                     'type' => 'text',
                     'description' => 'URL where Mpesa will send the payment notification.',
-                    'default' => 'https://yourwebsite.com/callback'
+                    'default' => 'https://yourwebsite.com/wp-admin/admin-ajax.php?action=mpesa_handle_callback'
                 ),
                 'sandbox_url' => array(
                     'title' => 'Sandbox URL',
@@ -118,11 +122,7 @@ function mpesa_init_gateway_class() {
             $result = $this->mpesa_payment_request($order->get_total(), $phone_number);
 
             if (isset($result->ResponseCode) && $result->ResponseCode == "0") {
-                // Payment successful
-                $order->payment_complete();
-                $order->reduce_order_stock();
-                $woocommerce->cart->empty_cart();
-
+                // Payment request was successful
                 return array(
                     'result' => 'success',
                     'redirect' => $this->get_return_url($order),
@@ -156,7 +156,7 @@ function mpesa_init_gateway_class() {
                 'PartyA' => $phone_number,
                 'PartyB' => $this->shortcode,
                 'PhoneNumber' => $phone_number,
-                'CallBackURL' => $this->callback_url, // Use the callback URL from settings
+                'CallBackURL' => $this->callback_url,
                 'AccountReference' => 'Order ' . rand(),
                 'TransactionDesc' => 'WooCommerce Order Payment'
             );
@@ -203,10 +203,31 @@ function mpesa_init_gateway_class() {
             return null;
         }
 
+        public function mpesa_handle_callback() {
+            // Get POST data
+            $body = json_decode(file_get_contents('php://input'));
+
+            if (isset($body->Body->stkCallback->ResultCode) && $body->Body->stkCallback->ResultCode == 0) {
+                // Payment was successful
+                $checkout_request_id = sanitize_text_field($body->Body->stkCallback->CheckoutRequestID);
+                $amount = sanitize_text_field($body->Body->stkCallback->CallbackMetadata->Item[0]->Value);
+                $phone_number = sanitize_text_field($body->Body->stkCallback->CallbackMetadata->Item[4]->Value);
+
+                // You may need to process this information to update the order status
+                // Example: Update WooCommerce order status based on $checkout_request_id
+
+                wp_send_json_success('Payment successful');
+            } else {
+                // Payment failed
+                $this->log_error('Mpesa Callback Error: ' . json_encode($body));
+                wp_send_json_error('Payment failed');
+            }
+            wp_die(); // Required to terminate immediately and return a proper response
+        }
+
         private function log_error($message) {
-            if (class_exists('WC_Logger')) {
-                $logger = new WC_Logger();
-                $logger->add('mpesa', $message);
+            if (defined('WP_DEBUG') && WP_DEBUG) {
+                error_log('Mpesa Plugin Error: ' . $message);
             }
         }
     }
