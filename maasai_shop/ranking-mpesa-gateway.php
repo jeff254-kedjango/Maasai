@@ -34,7 +34,9 @@ function mpesa_init_gateway_class() {
             $this->shortcode = getenv('MPESA_SHORTCODE') ?: $this->get_option('shortcode');
             $this->passkey = getenv('MPESA_PASSKEY') ?: $this->get_option('passkey');
             $this->sandbox = 'yes' === $this->get_option('sandbox');
-            
+            $this->callback_url = $this->get_option('callback_url');
+            $this->sandbox_url = $this->get_option('sandbox_url');
+
             add_action('woocommerce_update_options_payment_gateways_' . $this->id, array($this, 'process_admin_options'));
         }
 
@@ -71,6 +73,30 @@ function mpesa_init_gateway_class() {
                 'passkey' => array(
                     'title' => 'Mpesa Passkey',
                     'type' => 'text',
+                ),
+                'callback_url' => array(
+                    'title' => 'Callback URL',
+                    'type' => 'text',
+                    'description' => 'URL where Mpesa will send the payment notification.',
+                    'default' => 'https://yourwebsite.com/callback'
+                ),
+                'sandbox_url' => array(
+                    'title' => 'Sandbox URL',
+                    'type' => 'text',
+                    'description' => 'Sandbox URL for STK Push requests in the testing environment.',
+                    'default' => 'https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest'
+                ),
+                'sandbox_oauth_url' => array(
+                    'title' => 'Sandbox OAuth URL',
+                    'type' => 'text',
+                    'description' => 'Sandbox URL for OAuth token generation in the testing environment.',
+                    'default' => 'https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials'
+                ),
+                'production_oauth_url' => array(
+                    'title' => 'Production OAuth URL',
+                    'type' => 'text',
+                    'description' => 'Production URL for OAuth token generation in the live environment.',
+                    'default' => 'https://api.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials'
                 ),
                 'sandbox' => array(
                     'title' => 'Sandbox Mode',
@@ -118,7 +144,7 @@ function mpesa_init_gateway_class() {
             $password = base64_encode($this->shortcode . $this->passkey . $timestamp);
 
             $curl = curl_init();
-            curl_setopt($curl, CURLOPT_URL, $this->sandbox ? 'https://sandbox.safaricom.co.ke/mpesa/stkpush/v1/processrequest' : 'https://api.safaricom.co.ke/mpesa/stkpush/v1/processrequest');
+            curl_setopt($curl, CURLOPT_URL, $this->sandbox ? $this->sandbox_url : 'https://api.safaricom.co.ke/mpesa/stkpush/v1/processrequest');
             curl_setopt($curl, CURLOPT_HTTPHEADER, array('Authorization: Bearer ' . $token, 'Content-Type: application/json'));
 
             $data = array(
@@ -130,7 +156,7 @@ function mpesa_init_gateway_class() {
                 'PartyA' => $phone_number,
                 'PartyB' => $this->shortcode,
                 'PhoneNumber' => $phone_number,
-                'CallBackURL' => 'https://yourwebsite.com/callback',
+                'CallBackURL' => $this->callback_url, // Use the callback URL from settings
                 'AccountReference' => 'Order ' . rand(),
                 'TransactionDesc' => 'WooCommerce Order Payment'
             );
@@ -151,8 +177,14 @@ function mpesa_init_gateway_class() {
         }
 
         private function get_mpesa_access_token() {
-            $url = $this->sandbox ? 'https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials' : 'https://api.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials';
-
+            // Get URLs from settings
+            $sandbox_oauth_url = $this->get_option('sandbox_oauth_url') ?: 'https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials';
+            $production_oauth_url = $this->get_option('production_oauth_url') ?: 'https://api.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials';
+        
+            // Use sandbox URL if sandbox mode is enabled, otherwise use production
+            $url = $this->sandbox ? $sandbox_oauth_url : $production_oauth_url;
+        
+            // Authentication
             $credentials = base64_encode($this->consumer_key . ':' . $this->consumer_secret);
             $curl = curl_init();
             curl_setopt($curl, CURLOPT_URL, $url);
@@ -160,7 +192,7 @@ function mpesa_init_gateway_class() {
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
             $response = curl_exec($curl);
             curl_close($curl);
-
+        
             $json = json_decode($response);
             if (isset($json->access_token)) {
                 return $json->access_token;
