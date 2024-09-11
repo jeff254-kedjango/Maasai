@@ -138,33 +138,38 @@ function mpesa_init_gateway_class() {
         public function mpesa_payment_request($amount, $phone_number) {
             // Authentication
             $token = $this->get_mpesa_access_token();
-
+        
             // Payment request via STK Push
             $timestamp = date("YmdHis");
             $password = base64_encode($this->shortcode . $this->passkey . $timestamp);
-
+        
+            // Test phone number for sandbox testing
+            $test_phone_number = '254708374149'; // Mpesa test phone number
+        
+            $phone_number_to_use = $this->sandbox ? $test_phone_number : $phone_number;
+        
             $curl = curl_init();
             curl_setopt($curl, CURLOPT_URL, $this->sandbox ? $this->sandbox_url : 'https://api.safaricom.co.ke/mpesa/stkpush/v1/processrequest');
             curl_setopt($curl, CURLOPT_HTTPHEADER, array('Authorization: Bearer ' . $token, 'Content-Type: application/json'));
-
+        
             $data = array(
                 'BusinessShortCode' => $this->shortcode,
                 'Password' => $password,
                 'Timestamp' => $timestamp,
                 'TransactionType' => 'CustomerPayBillOnline',
                 'Amount' => $amount,
-                'PartyA' => $phone_number,
+                'PartyA' => $phone_number_to_use,
                 'PartyB' => $this->shortcode,
-                'PhoneNumber' => $phone_number,
+                'PhoneNumber' => $phone_number_to_use,
                 'CallBackURL' => $this->callback_url,
                 'AccountReference' => 'Order ' . rand(),
                 'TransactionDesc' => 'WooCommerce Order Payment'
             );
-
+        
             curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
             $response = curl_exec($curl);
-
+        
             // Check for curl errors
             if(curl_errno($curl)) {
                 $this->log_error('Mpesa Curl Error: ' . curl_error($curl));
@@ -172,7 +177,7 @@ function mpesa_init_gateway_class() {
             }
             
             curl_close($curl);
-
+        
             return json_decode($response);
         }
 
