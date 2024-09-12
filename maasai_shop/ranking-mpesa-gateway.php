@@ -2,7 +2,7 @@
 /*
 Plugin Name: Ranking Mpesa WooCommerce Gateway
 Description: Custom Mpesa payment gateway for WooCommerce.
-Version: 1.1
+Version: 1.6
 Author: Kwemange Nyagrowa
 */
 
