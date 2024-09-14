@@ -2,7 +2,7 @@
 /*
 Plugin Name: Mpesa Payment Gateway for WooCommerce with Debugging
 Description: A WooCommerce plugin that integrates Mpesa payment gateway, handles callbacks, and provides comprehensive logging for debugging.
-Version: 1.1
+Version: 1.8
 Author: Ranking Software & Tech
 */
 
